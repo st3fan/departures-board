@@ -12,6 +12,11 @@
 
 ;;
 
+(def DEFAULT-RADIUS 0.125)
+(def MAX-RADIUS 1.0)
+
+;;
+
 (defn index-agency
   "Index an agency into geo db"
   [agency db]
@@ -29,24 +34,29 @@
 ;;
 
 (defn find-stops
-  [agency position]
+  [agency position radius]
   (map #(-> % :object :tag)
-       (geodb/find-objects db position 0.2)))
+       (geodb/find-objects db position radius)))
 
 (defn position-from-params [params]
   {:latitude (-> params :latitude Double/parseDouble)
    :longitude (-> params :longitude Double/parseDouble)})
 
+(defn radius-from-params [params]
+  (if (contains? params :radius)
+    (min (-> params :radius Double/parseDouble) MAX-RADIUS)
+    DEFAULT-RADIUS))
+
 ;;
 
 (defroutes api-routes
   (GET "/api/stops" {params :params}
-       (let [position (position-from-params params)]
-         (response {:stops (find-stops ttc position)
+       (let [position (position-from-params params) radius (radius-from-params params)]
+         (response {:stops (find-stops ttc position radius)
                     :position position})))
   (GET "/api/predictions" {params :params}
-       (let [position (position-from-params params)]
-         (response {:predictions (nextbus/predictions ttc (find-stops ttc position))
+       (let [position (position-from-params params) radius (radius-from-params params)]
+         (response {:predictions (nextbus/predictions ttc (find-stops ttc position radius))
                     :position position})))
   (route/not-found "Not found"))
 
