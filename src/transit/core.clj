@@ -58,6 +58,7 @@
        (let [position (position-from-params params) radius (radius-from-params params)]
          (response {:predictions (nextbus/predictions ttc (find-stops ttc position radius))
                     :position position})))
+  (route/resources "/")
   (route/not-found "Not found"))
 
 (def app
