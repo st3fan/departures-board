@@ -110,6 +110,11 @@
 
 ;;(apply merge multi-stops (routes-for-stop agency (first stop-tags)))
 
+(defn remove-empty-predictions
+  "Remove predictions with no directions"
+  [predictions]
+  (filter #(not (empty? (:directions %))) predictions))
+
 ;; Public API
 
 (defn load-agency
@@ -132,4 +137,4 @@
   [agency stop-tags]
   (let [multi-stops (multi-stops-from-stops agency stop-tags)]
     (let [predictions-xml (load-predictions-xml (:tag agency) multi-stops)]
-      (parse-predictions-xml agency predictions-xml))))
+      (remove-empty-predictions (parse-predictions-xml agency predictions-xml)))))
