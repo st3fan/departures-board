@@ -6,13 +6,15 @@
 
   <body ng-controller="PredictionsController">
 
+    <timer progress="{{progress}}"></timer>
+
     <div ng-repeat="prediction in predictions">
       <h1>{{prediction.route.tag}} {{prediction.stop.title}}</h1>
       <div ng-repeat="direction in prediction.directions">
         <h3>{{direction.title}}</h3>
-        <table>
-          <li ng-repeat="prediction in direction.predictions">{{prediction.minutes}} minutes</li>
-        </table>
+        <p>
+          <span ng-repeat="prediction in direction.predictions">{{prediction.minutes}}, </span>
+        </p>
       </div>
     </div>
 
