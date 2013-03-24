@@ -4,32 +4,52 @@
    [clj-xpath.core :only [$x $x:tag $x:text $x:attrs $x:attrs* $x:node]])
   (require
    [clj-http.client :as http]
-   [me.raynes.fs :as fs]))
+   [me.raynes.fs :as fs]
+   [transit.geodb :as geodb]))
 
 (def NEXTBUS-API "http://webservices.nextbus.com/service/publicXMLFeed")
 (def NEXTBUS-DATA-DIR "~/.nextbus")
+(def GEODB-GRID-SIZE "0.1")
+
+;; Indexing code
+
+(defn index-agency
+  "Index an agency into geo db"
+  [agency db]
+  (doseq [stop (vals (:stops agency))]
+    (geodb/add-object db stop)))
+
+;; Loading and parsing of NextBus data
 
 (defn- load-route-list-xml
   [agency-tag]
   (let [path (fs/expand-home (str NEXTBUS-DATA-DIR "/" agency-tag "-routes.xml"))]
     (if (fs/exists? path)
-      (slurp path)
-      (let [response (http/get NEXTBUS-API {:query-params {:command "routeList" :a agency-tag}})]
-        (if (= 200 (:status response))
-          (let [body (:body response)]
-            (spit path body)
-            body))))))
+      (do
+        (println "Loading route list from" path)
+        (slurp path))
+      (do
+        (println "Loading route list from api.nextbus.com for " agency-tag)
+        (let [response (http/get NEXTBUS-API {:query-params {:command "routeList" :a agency-tag}})]
+         (if (= 200 (:status response))
+           (let [body (:body response)]
+             (spit path body)
+             body)))))))
 
 (defn- load-route-config-xml
   [agency-tag route-tag]
   (let [path (fs/expand-home (str NEXTBUS-DATA-DIR "/" agency-tag "-" route-tag ".xml"))]
     (if (fs/exists? path)
-      (slurp path)
-      (let [response (http/get NEXTBUS-API {:query-params {:command "routeConfig" :a agency-tag :r route-tag}})]
-        (if (= 200 (:status response))
-          (let [body (:body response)]
-            (spit path body)
-            body))))))
+      (do
+        (println "Loading route config for" route-tag "from" path)
+        (slurp path))
+      (do
+        (println "Loading route config for" route-tag "from api.nextbus.com")
+        (let [response (http/get NEXTBUS-API {:query-params {:command "routeConfig" :a agency-tag :r route-tag}})]
+         (if (= 200 (:status response))
+           (let [body (:body response)]
+             (spit path body)
+             body)))))))
 
 (defn- parse-route-stops
   "Parse a route config and return a map containing all the stops by tag"
@@ -108,12 +128,19 @@
        (apply merge multi-stops (combine-stop-and-routes (first stop-tags) (routes-for-stop agency (first stop-tags))))
        (rest stop-tags)))))
 
-;;(apply merge multi-stops (routes-for-stop agency (first stop-tags)))
-
 (defn remove-empty-predictions
   "Remove predictions with no directions"
   [predictions]
   (filter #(not (empty? (:directions %))) predictions))
+
+(defn index-stops
+  "Create a geodb and index a list of stops"
+  [stops]
+  (let [db (geodb/make-db GEODB-GRID-SIZE)]
+    (doseq [stop (vals stops)]
+      (geodb/add-object db stop))
+    (println "Indexed" (count stops) "stops")
+    db))
 
 ;; Public API
 
@@ -124,13 +151,18 @@
   (let [route-list-xml (load-route-list-xml agency-tag)]
     (loop [stops {} routes {} route-tags ($x:attrs* "//route" route-list-xml :tag)]
       (if (empty? route-tags)
-        {:tag agency-tag :stops stops :routes routes}
+        {:tag agency-tag :stops stops :routes routes :geodb (index-stops stops)}
         (let [route-config-xml (load-route-config-xml agency-tag (first route-tags))]
           (let [route-stops (parse-route-stops route-config-xml)
                 route (parse-route route-config-xml)]
             (recur
              (apply merge stops route-stops) (assoc routes (-> route :tag) route)
              (rest route-tags))))))))
+
+(defn find-stops
+  [agency position radius]
+  (map #(-> % :object :tag)
+       (geodb/find-objects (:geodb agency) position radius)))
 
 (defn predictions
   "Return predictions for the agency and stops"
