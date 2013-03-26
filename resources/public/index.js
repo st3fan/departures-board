@@ -15,7 +15,7 @@ app.controller('PredictionsController', function ($scope, $http, $timeout) {
     $scope.predictions = [];
 
     $scope.loadPredictions = function(latitude, longitude, radius) {
-        $http({method: "GET", url: "/api/predictions", params: {latitude: latitude, longitude: longitude, radius: radius}})
+        $http({method: "GET", url: "/api/predictions-for-position", params: {latitude: latitude, longitude: longitude, radius: radius}})
             .success(function(data) {
                 $scope.predictions = data.predictions;
             })

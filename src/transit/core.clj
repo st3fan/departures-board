@@ -5,6 +5,7 @@
    [ring.middleware.format-response :only [wrap-restful-response]]
    ring.adapter.jetty)
   (:require
+   [clojure.string :as string]
    [compojure.handler :as handler]
    [compojure.route :as route]
    [transit.nextbus :as nextbus]))
@@ -29,6 +30,9 @@
     (min (-> params :radius Double/parseDouble) MAX-RADIUS)
     DEFAULT-RADIUS))
 
+(defn stops-from-params [params]
+  (string/split (:stops params) #","))
+
 ;; The routes and app handler
 
 (defroutes api-routes
@@ -36,10 +40,15 @@
        (let [position (position-from-params params) radius (radius-from-params params)]
          (response {:stops (nextbus/find-stops ttc position radius)
                     :position position})))
-  (GET "/api/predictions" {params :params}
+  (GET "/api/predictions-for-position" {params :params}
        (let [position (position-from-params params) radius (radius-from-params params)]
          (response {:predictions (nextbus/predictions ttc (nextbus/find-stops ttc position radius))
                     :position position})))
+  (GET "/api/predictions-for-stops" {params :params}
+       (let [stops (stops-from-params params)]
+         (prn stops)
+         (response {:predictions (nextbus/predictions ttc stops)
+                    :stops stops})))
   (route/resources "/")
   (route/not-found "Not found"))
 
