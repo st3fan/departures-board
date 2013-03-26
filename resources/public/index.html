@@ -2,24 +2,81 @@
 <html lang="en" ng-app="predictions">
   <head>
     <meta charset="utf-8">
+  <link href='http://fonts.googleapis.com/css?family=Paytone+One' rel='stylesheet' type='text/css'>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #e0e0e0;
+    }
+    
+    .prediction {
+      background-color: #d0d0d0;
+      height: 50px;
+      width: 100%;
+      margin-top: 4px;
+      padding-bottom: 14px;
+    }
+    
+    .prediction h1 {
+    padding-left: 14px;
+    font-family: 'Paytone One', sans-serif;
+    font-size: 42px;
+    color: #404040;
+    }
+
+    .route {
+      float: left;
+      width: 90px;
+    }
+
+    .direction {
+      float: left;
+      width: 30px;
+    }
+
+    .name {
+    float: left;
+    padding-left: 20px;
+    font-size: 80%;
+    color: #606060;
+    }
+
+    .timelist {
+    float: right;
+    padding-left: 14px;
+    }
+    
+    .timelist li {
+    font-family: 'Paytone One', sans-serif;
+    xcolor: #708080;
+    font-size: 42px;
+    display: inline;
+    float: left;
+    list-style-type: none;
+    padding-right: 20px;
+    }
+  </style>
   </head>
 
   <body ng-controller="PredictionsController">
 
     <timer progress="{{progress}}"></timer>
 
-    <div ng-repeat="prediction in predictions">
-      <h1>{{prediction.route.tag}} {{prediction.stop.title}}</h1>
-      <div ng-repeat="direction in prediction.directions">
-        <h3>{{direction.title}}</h3>
-        <p>
-          <span ng-repeat="prediction in direction.predictions">{{prediction.minutes}}, </span>
-        </p>
-      </div>
+    <div class="prediction" ng-repeat="line in lines">
+      <h1><span class="route">{{line.route}}</span> <span class="direction">{{line.direction}}</span> <span class="name">{{line.name}}</span>
+        <ul class="timelist">
+          <li ng-repeat="time in line.times">{{time}}</li>
+        </ul>
+      </h1>
     </div>
 
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/angular.js"></script>
+    <script src="assets/js/underscore.js"></script>
     <script src="index.js"></script>
   </body>
 </html>
