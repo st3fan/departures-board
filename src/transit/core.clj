@@ -36,6 +36,13 @@
 (defn stops-from-params [params]
   (string/split (:stops params) #","))
 
+;;
+
+(defn wrap-dir-index [handler]
+  (fn [req]
+    (handler
+     (update-in req [:uri] #(if (= "/" %) "/index.html" %)))))
+
 ;; The routes and app handler
 
 (defroutes api-routes
@@ -64,4 +71,5 @@
 
 (def app
   (-> (handler/api api-routes)
-      (wrap-restful-response)))
+      (wrap-restful-response)
+      (wrap-dir-index)))
