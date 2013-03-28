@@ -132,15 +132,16 @@
   <body ng-controller="PredictionsController">
 
     <div id="header"><p>Mozilla Toronto Transit Board</p></div>
-    
-    <timer progress="{{progress}}"></timer>
 
-    <div class="prediction" ng-repeat="line in lines">
-      <h1><span class="route">{{line.route}}</span> <span class="direction">{{line.direction}}</span> <span class="name"><span class="stop">{{line.stopName}}</span> <br> {{line.name}}</span>
-        <ul class="timelist">
-          <li ng-repeat="time in line.times">{{time}}</li>
-        </ul>
-      </h1>
+    <div ng-show="focus">
+      <timer progress="{{progress}}"></timer>
+      <div class="prediction" ng-repeat="line in lines">
+        <h1><span class="route">{{line.route}}</span> <span class="direction">{{line.direction}}</span> <span class="name"><span class="stop">{{line.stopName}}</span> <br> {{line.name}}</span>
+          <ul class="timelist">
+            <li ng-repeat="time in line.times">{{time}}</li>
+          </ul>
+        </h1>
+      </div>
     </div>
 
     <script src="assets/js/jquery.js"></script>

@@ -11,10 +11,25 @@ app.directive('timer', function () {
 
 app.controller('PredictionsController', function ($scope, $http, $timeout) {
 
+    $scope.seconds = 0;
     $scope.progress = 0;
     $scope.lines = [];
+    $scope.focus = true;
 
-    $scope.loadPredictions = function(latitude, longitude, radius) {
+    window.onfocus = function() {
+        $scope.focus = true;
+        $scope.progress = 0;
+        $scope.seconds = 0;
+    };
+
+    window.onblur = function() {
+        $scope.focus = false;
+        $scope.lines = [];
+    };
+
+    //
+
+    $scope.loadPredictions = function() {
         $http({method: "GET", url: "/api/predictions-for-stops", params: {stops: "7060,1653,436,5275"}})
             .success(function(data) {
                 // TODO Ideally all this moves to the server side so that we only have to fetch data here
@@ -65,7 +80,6 @@ app.controller('PredictionsController', function ($scope, $http, $timeout) {
                                 }
                             });
                             lines.push(line);
-                            console.log(line);
                         });
                     }
                 });
@@ -76,19 +90,22 @@ app.controller('PredictionsController', function ($scope, $http, $timeout) {
             });
     };
 
-    var seconds = 0;
-
     $scope.onTimeout = function() {
-        console.log("Reloading");
-        seconds++;
-        $scope.progress = (seconds / 30) * 100;
-        if (seconds == 30) {
-            seconds = 0;
-            $scope.loadPredictions(43.647294, -79.394374, 0.25);
-        }
+        if ($scope.focus) {
+            if ($scope.seconds == 0) {
+                $scope.loadPredictions();
+            }
+
+            $scope.seconds++;
+            $scope.progress = ($scope.seconds / 30) * 100;
+            
+            if ($scope.seconds == 30) {
+                $scope.seconds = 0;
+            }
+        }        
         refreshTimeout = $timeout($scope.onTimeout, 1000);
     };
 
-    $scope.loadPredictions(43.647294, -79.394374, 0.25);
+    $scope.loadPredictions();
     var refreshTimeout = $timeout($scope.onTimeout, 1000);
 });
