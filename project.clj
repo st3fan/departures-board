@@ -13,6 +13,7 @@
                  [com.github.kyleburton/clj-xpath "1.4.1"]
                  [me.raynes/fs "1.4.0"]]
   :plugins [[lein-ring "0.8.3"]]
-  :dev-dependencies [[ring/ring-devel "1.1.8"]]
+  :profiles {:dev {:dependencies [[ring/ring-devel "1.1.8"]
+                                  [criterium "0.3.1"]]}}
   :ring {:handler transit.core/app :init transit.core/init}
-  :jvm-opts ["-Xms128m" "-Xmx256m" "-server"])
+  :jvm-opts ["-Xms64m" "-Xmx128m" "-server"])
