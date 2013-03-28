@@ -8,7 +8,10 @@
    [clojure.string :as string]
    [compojure.handler :as handler]
    [compojure.route :as route]
-   [transit.nextbus :as nextbus]))
+   [transit.nextbus :as nextbus])
+  (:import
+   java.lang.management.ManagementFactory
+   java.lang.management.RuntimeMXBean))
 
 ;; Defaults
 
@@ -36,6 +39,13 @@
 ;; The routes and app handler
 
 (defroutes api-routes
+  (GET "/api/status" []
+       (let [rt (Runtime/getRuntime)]
+         (response {:uptime (.getUptime (ManagementFactory/getRuntimeMXBean))
+                    :memory {:total (.totalMemory rt)
+                             :free (.freeMemory rt)
+                             :max (.maxMemory rt)
+                             :used (- (.totalMemory rt) (.freeMemory rt))}})))
   (GET "/api/stops" {params :params}
        (let [position (position-from-params params) radius (radius-from-params params)]
          (response {:stops (nextbus/find-stops ttc position radius)
