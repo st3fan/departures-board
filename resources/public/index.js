@@ -19,11 +19,11 @@ app.controller('PredictionsController', function ($scope, $http, $timeout) {
             .success(function(data) {
                 // TODO Ideally all this moves to the server side so that we only have to fetch data here
                 var routesOfInterest = [
-                    {route: "501", stop: "7060"}, // 501 East: Queen & Peter St
-                    {route: "501", stop: "1653"}, // 501 West: Queen & Spadina Ave
-                    {route: "504", stop: "436" }, // 504 West: King St West & Spadina Ave
-                    {route: "508", stop: "436" }, // 508 West: King St West & Spadina Ave
-                    {route: "510", stop: "5275"}  // 510 North: Spadina Ave & King St West North Side
+                    {route: "501", stop: "7060", stopName: "Queen & Peter"}, // 501 East: Queen & Peter St
+                    {route: "501", stop: "1653", stopName: "Queen & Spadina"}, // 501 West: Queen & Spadina Ave
+                    {route: "504", stop: "436",  stopName: "King & Spadina"}, // 504 West: King St West & Spadina Ave
+                    {route: "508", stop: "436",  stopName: "King & Spadina"}, // 508 West: King St West & Spadina Ave
+                    {route: "510", stop: "5275", stopName: "King & Spadina"}  // 510 North: Spadina Ave & King St West North Side
                 ];
 
                 var isPredictionOfInterest = function(prediction) {
@@ -44,16 +44,23 @@ app.controller('PredictionsController', function ($scope, $http, $timeout) {
                     }
                 };
 
+                var getStopName = function(tag) {
+                    for (var i = 0; i < routesOfInterest.length; i++) {
+                      if (tag === routesOfInterest[i].stop) {
+                          return routesOfInterest[i].stopName;
+                      }
+                    }
+                    return "";
+                }
+
                 var lines = [];
                 _.each(data.predictions, function (prediction) {
                     if (isPredictionOfInterest(prediction)) {
                         _.each(prediction.directions, function (direction) {
                             var line = {route: prediction.route.tag, direction: direction.title[0],
-                                        name: simplifyDirectionName(direction.title), times: [] };
+                                        name: simplifyDirectionName(direction.title), times: [], stopName: getStopName(prediction.stop.tag) };
                             _.each(direction.predictions, function(prediction) {
-                                if (prediction.minutes == 0) {
-                                    line.times.push("DUE");
-                                } else {
+                                if (prediction.minutes > 1) {
                                     line.times.push(prediction.minutes);
                                 }
                             });
