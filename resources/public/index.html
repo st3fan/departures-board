@@ -36,6 +36,10 @@
     padding: 20px;
     }
     
+    .progress {
+      transition: width 1s linear 0s;
+    }
+    
     .logo {
     float: right;
     color: #fff;
@@ -134,7 +138,7 @@
     <div id="header"><p>Mozilla Toronto Transit Board</p></div>
 
     <div ng-show="focus">
-      <timer progress="{{progress}}"></timer>
+      <timer class="progress" progress="{{progress}}"></timer>
       <div class="prediction" ng-repeat="line in lines">
         <h1><span class="route">{{line.route}}</span> <span class="direction">{{line.direction}}</span> <span class="name"><span class="stop">{{line.stopName}}</span> <br> {{line.name}}</span>
           <ul class="timelist">
