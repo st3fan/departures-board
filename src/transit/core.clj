@@ -2,16 +2,17 @@
   (:use
    compojure.core
    ring.util.response
-   [ring.middleware.format-response :only [wrap-restful-response]]
-   ring.adapter.jetty)
+   [ring.middleware.format-response :only [wrap-restful-response]])
   (:require
    [clojure.string :as string]
    [compojure.handler :as handler]
    [compojure.route :as route]
-   [transit.nextbus :as nextbus])
+   [transit.nextbus :as nextbus]
+   [ring.adapter.jetty :as jetty])
   (:import
    java.lang.management.ManagementFactory
-   java.lang.management.RuntimeMXBean))
+   java.lang.management.RuntimeMXBean)
+  (:gen-class :main true))
 
 ;; Defaults
 
@@ -79,3 +80,11 @@
   (-> (handler/api api-routes)
       (wrap-restful-response)
       (wrap-dir-index)))
+
+;; Main for running from a uberjar
+
+(defn -main
+  [& args]
+  (let [port (or (first *command-line-args*) 8080)]
+    (init)
+    (jetty/run-jetty app {:port port})))

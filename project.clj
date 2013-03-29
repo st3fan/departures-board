@@ -16,4 +16,5 @@
   :profiles {:dev {:dependencies [[ring/ring-devel "1.1.8"]
                                   [criterium "0.3.1"]]}}
   :ring {:handler transit.core/app :init transit.core/init}
+  :main transit.core
   :jvm-opts ["-Xms64m" "-Xmx128m" "-server"])
