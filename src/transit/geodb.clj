@@ -17,9 +17,16 @@
    (alter db conj {:position {:latitude (:latitude object) :longitude (:longitude object)}
                    :object object})))
 
+(defn db-size
+  "Return the number of objects in the database"
+  [db]
+  (dosync
+   (count @db)))
+
 (defn find-objects
   "Find objects at a specific position and radius"
   [db position radius]
   (dosync
-   (for [record @db :let [distance (geo/haversine-distance position (:position record))] :when (<= distance radius)]
-     {:position (:position record) :object (:object record) :distance distance})))
+   (sort-by :distance
+    (for [record @db :let [distance (geo/haversine-distance position (:position record))] :when (<= distance radius)]
+      {:position (:position record) :object (:object record) :distance distance}))))
