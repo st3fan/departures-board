@@ -20,7 +20,7 @@
 
 ;; Our database with stops, routes, directions
 
-(defonce ttc (nextbus/load-agency "ttc"))
+(defonce ttc (ref nil))
 
 ;; Helpers to parse request parameters
 
@@ -43,6 +43,12 @@
     (handler
      (update-in req [:uri] #(if (= "/" %) "/index.html" %)))))
 
+;;
+
+(defn init []
+  (dosync
+   (ref-set ttc (nextbus/load-agency "ttc"))))
+
 ;; The routes and app handler
 
 (defroutes api-routes
@@ -55,16 +61,16 @@
                              :used (- (.totalMemory rt) (.freeMemory rt))}})))
   (GET "/api/stops" {params :params}
        (let [position (position-from-params params) radius (radius-from-params params)]
-         (response {:stops (nextbus/find-stops ttc position radius)
+         (response {:stops (nextbus/find-stops @ttc position radius)
                     :position position})))
   (GET "/api/predictions-for-position" {params :params}
        (let [position (position-from-params params) radius (radius-from-params params)]
-         (response {:predictions (nextbus/predictions ttc (nextbus/find-stops ttc position radius))
+         (response {:predictions (nextbus/predictions @ttc (nextbus/find-stops @ttc position radius))
                     :position position})))
   (GET "/api/predictions-for-stops" {params :params}
        (let [stops (stops-from-params params)]
          (prn stops)
-         (response {:predictions (nextbus/predictions ttc stops)
+         (response {:predictions (nextbus/predictions @ttc stops)
                     :stops stops})))
   (route/resources "/")
   (route/not-found "Not found"))
