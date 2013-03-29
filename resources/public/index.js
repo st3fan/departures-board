@@ -16,16 +16,18 @@ app.controller('PredictionsController', function ($scope, $http, $timeout) {
     $scope.lines = [];
     $scope.focus = true;
 
-    window.onfocus = function() {
-        $scope.focus = true;
-        $scope.progress = 0;
-        $scope.seconds = 0;
-    };
-
-    window.onblur = function() {
-        $scope.focus = false;
-        $scope.lines = [];
-    };
+    if (false) {
+        window.onfocus = function() {
+            $scope.focus = true;
+            $scope.progress = 0;
+            $scope.seconds = 0;
+        };
+        
+        window.onblur = function() {
+            $scope.focus = false;
+            $scope.lines = [];
+        };
+    }
 
     //
 
