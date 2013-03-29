@@ -217,7 +217,7 @@
 (deftest test-make-db
   (testing ""
     (let [db (geodb/make-db 0.1)]
-     (is (not (nil? db))))))
+      (is (not (nil? db))))))
 
 (deftest test-add-object
   (testing "Adding objects"
@@ -233,11 +233,17 @@
       (doseq [stop stops]
         (geodb/add-object db stop))
       ;; Find objects
-      (let [objects (geodb/find-objects db {:latitude 43.60023 :longitude -79.50257} 0.25)]
+      (let [objects (geodb/find-objects db {:latitude 43.60023 :longitude -79.50257} 0.15)]
+        (prn objects)
         ;; Make sure we found 6 objects
-        (is (= 6 (count objects)))
+        (is (= 2 (count objects)))
         ;; Make sure all objects have a :distance field
         (doseq [object objects]
+          (is (contains? object :object))
+          (is (contains? object :position))
           (is (contains? object :distance)))
+        ;; Make sure we got the right ones back
+        (is (= "7245" (-> (nth objects 0) :object :tag)))
+        (is (= "4223" (-> (nth objects 1) :object :tag)))
         ;; Make sure the objects are sorted
         (is (apply < (map #(:distance %) objects)))))))
