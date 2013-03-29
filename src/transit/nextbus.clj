@@ -7,8 +7,8 @@
    [me.raynes.fs :as fs]
    [transit.geodb :as geodb]))
 
-(def NEXTBUS-API "http://webservices.nextbus.com/service/publicXMLFeed")
-(def NEXTBUS-DATA-DIR "~/.nextbus")
+(def ^:dynamic NEXTBUS-API "http://webservices.nextbus.com/service/publicXMLFeed")
+(def ^:dynamic NEXTBUS-DATA-DIR "~/.nextbus")
 (def GEODB-GRID-SIZE "0.1")
 
 ;; Indexing code

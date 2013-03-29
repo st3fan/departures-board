@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<body copyright="All data copyright Toronto Transit Commission 2013.">
+<route tag="510" title="510-Spadina" color="ff0000" oppositeColor="ffffff" latMin="43.6385499" latMax="43.6672199" lonMin="-79.40392" lonMax="-79.39167">
+<stop tag="14339" title="Spadina Station" lat="43.6672199" lon="-79.40392" stopId="14816"/>
+<stop tag="7162" title="Spadina Ave At Sussex Ave South Side" lat="43.66426" lon="-79.40275" stopId="8132"/>
+<stop tag="5136" title="Spadina Ave At Harbord St South Side" lat="43.6627599" lon="-79.4021499" stopId="8124"/>
+<stop tag="3741" title="Spadina Ave At Willcocks St" lat="43.6614699" lon="-79.4016499" stopId="8134"/>
+<stop tag="3323" title="Spadina Ave At College St South Side" lat="43.6574799" lon="-79.40006" stopId="8120"/>
+<stop tag="3159" title="Spadina Ave At Nassau St South Side" lat="43.6554399" lon="-79.3992699" stopId="8128"/>
+<stop tag="10093" title="Spadina Ave At Dundas St West South Side" lat="43.6525099" lon="-79.398" stopId="8121"/>
+<stop tag="2097" title="Spadina Ave At Sullivan St" lat="43.6510299" lon="-79.3974199" stopId="8131"/>
+<stop tag="9203" title="Spadina Ave At Queen St West South Side" lat="43.6483199" lon="-79.39635" stopId="8129"/>
+<stop tag="10089" title="Charlotte St At Oxley St" lat="43.64658" lon="-79.39401" stopId="12158"/>
+<stop tag="5275_ar" title="Spadina Ave At King St West North Side" lat="43.6460299" lon="-79.39516"/>
+<stop tag="14861" title="Spadina Ave At King St West" lat="43.6454999" lon="-79.39535" stopId="15078"/>
+<stop tag="14869" title="Spadina Ave At Front St West South Side" lat="43.6422799" lon="-79.3940199" stopId="10778"/>
+<stop tag="14864" title="Spadina Ave At Bremner Blvd" lat="43.6405999" lon="-79.3933099" stopId="11993"/>
+<stop tag="478_ar" title="Queens Quay Loop At Lower Spadina Ave" lat="43.6385499" lon="-79.39167"/>
+<stop tag="5275" title="Spadina Ave At King St West North Side" lat="43.6460299" lon="-79.39516" stopId="7353"/>
+<stop tag="8346" title="Spadina Ave At Richmond St West" lat="43.6476199" lon="-79.3958299" stopId="11985"/>
+<stop tag="7582" title="Spadina Ave At Queen St West North Side" lat="43.6491599" lon="-79.39647" stopId="7355"/>
+<stop tag="1288" title="Spadina Ave At Sullivan St North Side" lat="43.65125" lon="-79.3973" stopId="7356"/>
+<stop tag="1138" title="Spadina Ave At Dundas St West North Side" lat="43.6534199" lon="-79.39802" stopId="7349"/>
+<stop tag="6577" title="Spadina Ave At Nassau St" lat="43.65567" lon="-79.39889" stopId="11986"/>
+<stop tag="6730" title="Spadina Ave At College St North Side" lat="43.6584299" lon="-79.40019" stopId="7347"/>
+<stop tag="6145" title="Spadina Ave At Willcocks St" lat="43.66113" lon="-79.40128" stopId="7358"/>
+<stop tag="2291" title="Spadina Ave At Harbord St North Side" lat="43.6634699" lon="-79.4021899" stopId="7351"/>
+<stop tag="5927" title="Spadina Ave At Sussex Ave" lat="43.6644599" lon="-79.4025999" stopId="7357"/>
+<stop tag="14339_ar" title="Spadina Station" lat="43.6672199" lon="-79.40392"/>
+<stop tag="478" title="Queens Quay Loop At Lower Spadina Ave" lat="43.6385499" lon="-79.39167" stopId="10927"/>
+<stop tag="14853" title="Spadina Ave At Bremner Blvd" lat="43.64052" lon="-79.39274" stopId="15070"/>
+<stop tag="14854" title="Spadina Ave At Front St West" lat="43.64269" lon="-79.39367" stopId="15071"/>
+<direction tag="510_0_510A" title="South - 510 Spadina towards King" name="South" useForUI="true" branch="510">
+  <stop tag="14339" />
+  <stop tag="7162" />
+  <stop tag="5136" />
+  <stop tag="3741" />
+  <stop tag="3323" />
+  <stop tag="3159" />
+  <stop tag="10093" />
+  <stop tag="2097" />
+  <stop tag="9203" />
+  <stop tag="10089" />
+  <stop tag="5275_ar" />
+</direction>
+<direction tag="510_1_BUSkg" title="North - 510 Spadina Shuttle Bus towards King" name="North" useForUI="true" branch="510">
+  <stop tag="478" />
+  <stop tag="14853" />
+  <stop tag="14854" />
+  <stop tag="5275" />
+</direction>
+<direction tag="510_1_kg510" title="North - 510 Spadina towards Spadina Station" name="North" useForUI="true" branch="510">
+  <stop tag="5275" />
+  <stop tag="8346" />
+  <stop tag="7582" />
+  <stop tag="1288" />
+  <stop tag="1138" />
+  <stop tag="6577" />
+  <stop tag="6730" />
+  <stop tag="6145" />
+  <stop tag="2291" />
+  <stop tag="5927" />
+  <stop tag="14339_ar" />
+</direction>
+<direction tag="510_0_kgBUS" title="South - 510 Spadina Shuttle Bus towards Queen&apos;S Quay and Spadina" name="South" useForUI="true" branch="510">
+  <stop tag="14861" />
+  <stop tag="14869" />
+  <stop tag="14864" />
+  <stop tag="478_ar" />
+</direction>
+<path>
+<point lat="43.6455" lon="-79.3953499"/>
+<point lat="43.64228" lon="-79.39402"/>
+<point lat="43.6406" lon="-79.39331"/>
+<point lat="43.63793" lon="-79.39212"/>
+<point lat="43.63767" lon="-79.39189"/>
+<point lat="43.63785" lon="-79.39091"/>
+<point lat="43.63835" lon="-79.3911"/>
+<point lat="43.63854" lon="-79.39131"/>
+<point lat="43.63855" lon="-79.39167"/>
+</path>
+<path>
+<point lat="43.64832" lon="-79.39635"/>
+<point lat="43.64673" lon="-79.3956199"/>
+<point lat="43.64706" lon="-79.39412"/>
+<point lat="43.64658" lon="-79.39401"/>
+<point lat="43.64577" lon="-79.39362"/>
+<point lat="43.64549" lon="-79.39492"/>
+<point lat="43.64603" lon="-79.39516"/>
+</path>
+<path>
+<point lat="43.65748" lon="-79.40006"/>
+<point lat="43.65544" lon="-79.39927"/>
+<point lat="43.65293" lon="-79.39805"/>
+<point lat="43.65251" lon="-79.398"/>
+</path>
+<path>
+<point lat="43.64603" lon="-79.39516"/>
+<point lat="43.64673" lon="-79.3956199"/>
+<point lat="43.64762" lon="-79.39583"/>
+<point lat="43.64916" lon="-79.3964699"/>
+</path>
+<path>
+<point lat="43.65843" lon="-79.40019"/>
+<point lat="43.65884" lon="-79.4004"/>
+<point lat="43.65898" lon="-79.40046"/>
+<point lat="43.65907" lon="-79.40035"/>
+<point lat="43.65922" lon="-79.40019"/>
+<point lat="43.6593" lon="-79.4001"/>
+<point lat="43.65955" lon="-79.39993"/>
+<point lat="43.65982" lon="-79.39992"/>
+<point lat="43.66007" lon="-79.40009"/>
+<point lat="43.66025" lon="-79.4004"/>
+<point lat="43.66026" lon="-79.40046"/>
+<point lat="43.66029" lon="-79.4005899"/>
+<point lat="43.66029" lon="-79.40066"/>
+<point lat="43.66029" lon="-79.40097"/>
+<point lat="43.66062" lon="-79.40112"/>
+<point lat="43.66113" lon="-79.40128"/>
+<point lat="43.6634699" lon="-79.40219"/>
+<point lat="43.66446" lon="-79.4026"/>
+<point lat="43.66539" lon="-79.40307"/>
+<point lat="43.66665" lon="-79.40386"/>
+<point lat="43.66684" lon="-79.40322"/>
+<point lat="43.667" lon="-79.40283"/>
+<point lat="43.66724" lon="-79.40283"/>
+<point lat="43.66735" lon="-79.40315"/>
+<point lat="43.66722" lon="-79.40392"/>
+</path>
+<path>
+<point lat="43.64916" lon="-79.3964699"/>
+<point lat="43.65125" lon="-79.3973"/>
+<point lat="43.65293" lon="-79.39805"/>
+<point lat="43.6534199" lon="-79.39802"/>
+</path>
+<path>
+<point lat="43.6534199" lon="-79.39802"/>
+<point lat="43.65567" lon="-79.39889"/>
+<point lat="43.65795" lon="-79.40003"/>
+<point lat="43.65843" lon="-79.40019"/>
+</path>
+<path>
+<point lat="43.63855" lon="-79.39167"/>
+<point lat="43.63848" lon="-79.39176"/>
+<point lat="43.64052" lon="-79.39274"/>
+<point lat="43.64269" lon="-79.39367"/>
+<point lat="43.64603" lon="-79.39516"/>
+</path>
+<path>
+<point lat="43.66722" lon="-79.40392"/>
+<point lat="43.66718" lon="-79.40397"/>
+<point lat="43.66713" lon="-79.40405"/>
+<point lat="43.66707" lon="-79.4040799"/>
+<point lat="43.66699" lon="-79.4041"/>
+<point lat="43.66539" lon="-79.40307"/>
+<point lat="43.66426" lon="-79.40275"/>
+<point lat="43.66276" lon="-79.40215"/>
+<point lat="43.66147" lon="-79.40165"/>
+<point lat="43.66062" lon="-79.40112"/>
+<point lat="43.66029" lon="-79.40097"/>
+<point lat="43.6601799" lon="-79.40127"/>
+<point lat="43.66002" lon="-79.40146"/>
+<point lat="43.65981" lon="-79.40158"/>
+<point lat="43.65956" lon="-79.40158"/>
+<point lat="43.65931" lon="-79.40142"/>
+<point lat="43.65909" lon="-79.40102"/>
+<point lat="43.65902" lon="-79.40068"/>
+<point lat="43.65898" lon="-79.40046"/>
+<point lat="43.65884" lon="-79.4004"/>
+<point lat="43.65795" lon="-79.40003"/>
+<point lat="43.65748" lon="-79.40006"/>
+</path>
+<path>
+<point lat="43.65251" lon="-79.398"/>
+<point lat="43.65103" lon="-79.39742"/>
+<point lat="43.64832" lon="-79.39635"/>
+</path>
+</route>
+</body>
