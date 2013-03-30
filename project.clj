@@ -1,4 +1,4 @@
-(defproject transit "0.1.0-SNAPSHOT"
+(defproject departures-board "0.1.0-SNAPSHOT"
   :description "Departures Board"
   :url "https://github.com/st3fan/departures-board"
   :license {:name "Eclipse Public License"
