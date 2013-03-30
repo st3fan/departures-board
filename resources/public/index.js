@@ -172,14 +172,12 @@ app.controller('PredictionsController', function ($scope, $http, $timeout) {
         $scope.title = "Departures"
         navigator.geolocation.getCurrentPosition(function (position) {
             location = {position: {latitude: position.coords.latitude, longitude: position.coords.longitude}};
-            $scope.loadPredictions(location);
             var refreshTimeout = $timeout($scope.onTimeout, 1000);
         });
     } else {
         var name = window.location.hash.substr(1);
         $scope.title = locations[name].title;
         location = {name: name};
-        $scope.loadPredictions(location);
         var refreshTimeout = $timeout($scope.onTimeout, 1000);
     }
 });
