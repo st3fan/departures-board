@@ -18,33 +18,32 @@
     }
         
     #header {
-    width: 100%;
-    background: url("assets/wallpaper.png") repeat center top, -webkit-linear-gradient(top, rgba(30,30,30,1) 0%, rgba(0,0,0,1) 100%);
-    background: url("assets/wallpaper.png") repeat center top, -moz-linear-gradient(top, rgba(30,30,30,1) 0%, rgba(0,0,0,1) 100%);
-    border-bottom: 4px solid #a52118;
-    box-shadow: 0px 20px 0px rgba(0,0,0,0.05);
+      width: 100%;
+      background: url("assets/wallpaper.png") repeat center top, -webkit-linear-gradient(top, rgba(30,30,30,1) 0%, rgba(0,0,0,1) 100%);
+      background: url("assets/wallpaper.png") repeat center top, -moz-linear-gradient(top, rgba(30,30,30,1) 0%, rgba(0,0,0,1) 100%);
+      border-bottom: 4px solid #a52118;
+      box-shadow: 0px 20px 0px rgba(0,0,0,0.05);
     }
     
     #header p {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    font-size: 42px;
-    color: #ffffff;
-    text-transform: uppercase;0
-    text-align: center;
-    letter-spacing: 2px;
-    padding: 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      font-size: 42px;
+      color: #ffffff;
+      text-transform: uppercase;0
+      text-align: center;
+      letter-spacing: 2px;
+      padding: 20px;
     }
     
     .logo {
-    float: right;
-    color: #fff;
-    font-size: 42px;
-    margin-top: -80px;
-    margin-right: 20px;
+      float: right;
+      color: #fff;
+      font-size: 42px;
+      margin-top: -80px;
+      margin-right: 20px;
     }
-
-    
+ 
     .prediction {
       height: 50px;
       width: 100%;
@@ -59,12 +58,12 @@
     }
     
     .prediction h1 {
-    padding-left: 14px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    letter-spacing: 2px;
-    font-size: 42px;
-    color: #333;
+      padding-left: 14px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      letter-spacing: 2px;
+      font-size: 42px;
+      color: #333;
     }
     
     .route {
@@ -92,46 +91,46 @@
     }
 
     .stop {
-    text-transform: uppercase;
-    font-size: 200%;
-    color: #333;
+      text-transform: uppercase;
+      font-size: 200%;
+      color: #333;
     }
     
     .name {
-    float: left;
-    margin-left: 20px;
-    padding-top: 2px;
-    height: 50px;
-    text-transform: uppercase;
-    font-size: 30%;
-    color: #a52118;
+      float: left;
+      margin-left: 20px;
+      padding-top: 2px;
+      height: 50px;
+      text-transform: uppercase;
+      font-size: 30%;
+      color: #a52118;
     }
 
     .timelist {
-    float: right;
-    padding-right: 14px;
+      float: right;
+      padding-right: 14px;
     }
     
     .timelist li {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    width: 48px;
-    font-size: 36px;
-    display: inline;
-    float: left;
-    list-style-type: none;
-    margin-right: 20px;
-    padding: 0px 6px;
-    height: 70px;
-    border-left: 1px solid rgba(0,0,0,0.1);
-    text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      width: 48px;
+      font-size: 36px;
+      display: inline;
+      float: left;
+      list-style-type: none;
+      margin-right: 20px;
+      padding: 0px 6px;
+      height: 70px;
+      border-left: 1px solid rgba(0,0,0,0.1);
+      text-align: center;
     }
   </style>
   </head>
 
   <body ng-controller="PredictionsController">
 
-    <div id="header"><p>Mozilla Toronto Transit Board</p></div>
+    <div id="header"><p>{{title}}</p></div>
 
     <div ng-show="focus">
       <timer progress="{{progress}}"></timer>
