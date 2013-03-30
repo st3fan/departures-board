@@ -1,7 +1,7 @@
-(ns transit.core-test
+(ns departures-board.core-test
   (:use
     clojure.test
-    transit.core))
+    departures-board.core))
 
 (deftest a-test
   (testing "FIXME, I fail."

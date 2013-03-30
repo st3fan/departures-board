@@ -1,7 +1,7 @@
-(ns transit.geo-test
+(ns departures-board.geo-test
   (:use
    clojure.test
-   transit.index))
+   departures-board.index))
 
 (def fifth-street {:position {:latitude 43.60023 :longitude -79.50257}
                    :radius 0.2

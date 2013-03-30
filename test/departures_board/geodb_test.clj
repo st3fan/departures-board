@@ -1,9 +1,9 @@
-(ns transit.geodb-test
+(ns departures-board.geodb-test
   (:use
     clojure.test
-    transit.geodb)
+    departures-board.geodb)
   (:require
-    [transit.geodb :as geodb]))
+    [departures-board.geodb :as geodb]))
 
 (def stops [{:longitude -79.54412, :title "Long Branch Loop", :latitude 43.5918099, :tag "1750"}
             {:longitude -79.5406699, :title "Lake Shore Blvd West At Thirty Ninth St", :latitude 43.5928, :tag "5110"}

@@ -1,4 +1,4 @@
-(ns transit.geo)
+(ns departures-board.geo)
 
 (def earth-radius 6371.0)
 

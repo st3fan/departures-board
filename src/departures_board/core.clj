@@ -1,4 +1,4 @@
-(ns transit.core
+(ns departures-board.core
   (:use
    compojure.core
    ring.util.response
@@ -7,7 +7,7 @@
    [clojure.string :as string]
    [compojure.handler :as handler]
    [compojure.route :as route]
-   [transit.nextbus :as nextbus]
+   [departures-board.nextbus :as nextbus]
    [ring.adapter.jetty :as jetty])
   (:import
    java.lang.management.ManagementFactory

@@ -1,6 +1,6 @@
-(ns transit.geodb
+(ns departures-board.geodb
   (:require
-   [transit.geo :as geo]))
+   [departures-board.geo :as geo]))
 
 ;; This is a very simplistic geo database. Right now it just does a linear scan
 ;; of objects. In the future I would like to create a real spatial index.

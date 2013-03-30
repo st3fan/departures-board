@@ -1,11 +1,11 @@
-(ns transit.nextbus
+(ns departures-board.nextbus
   (:use
    clojure.xml
    [clj-xpath.core :only [$x $x:tag $x:text $x:attrs $x:attrs* $x:node]])
   (require
    [clj-http.client :as http]
    [me.raynes.fs :as fs]
-   [transit.geodb :as geodb]))
+   [departures-board.geodb :as geodb]))
 
 (def ^:dynamic NEXTBUS-API "http://webservices.nextbus.com/service/publicXMLFeed")
 (def ^:dynamic NEXTBUS-DATA-DIR "~/.nextbus")

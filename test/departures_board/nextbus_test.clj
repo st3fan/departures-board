@@ -1,9 +1,9 @@
-(ns transit.nextbus-test
+(ns departures-board.nextbus-test
   (:use
     clojure.test
-    transit.nextbus)
+    departures-board.nextbus)
   (:require
-   [transit.nextbus :as nextbus]))
+   [departures-board.nextbus :as nextbus]))
 
 (deftest test-load-agency
   (binding [nextbus/NEXTBUS-DATA-DIR "test/transit/nextbus-data"]

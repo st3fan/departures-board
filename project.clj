@@ -1,6 +1,6 @@
 (defproject transit "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "https://github.com/st3fan/clj-transit"
+  :description "Departures Board"
+  :url "https://github.com/st3fan/departures-board"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.5.1"]
@@ -15,6 +15,6 @@
   :plugins [[lein-ring "0.8.3"]]
   :profiles {:dev {:dependencies [[ring/ring-devel "1.1.8"]
                                   [criterium "0.3.1"]]}}
-  :ring {:handler transit.core/app :init transit.core/init}
-  :main transit.core
+  :ring {:handler departures-board.core/app :init departures-board.core/init}
+  :main departures-board.core
   :jvm-opts ["-Xms64m" "-Xmx128m" "-server"])

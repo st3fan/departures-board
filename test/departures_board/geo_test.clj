@@ -1,7 +1,7 @@
-(ns transit.geo-test
+(ns departures-board.geo-test
   (:use
    clojure.test
-   transit.geo))
+   departures-board.geo))
 
 (deftest haversine-test
   (testing "Distance between Warsaw and Amsterdam"
