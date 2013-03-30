@@ -2,7 +2,7 @@ var app = angular.module('predictions', []);
 
 app.directive('timer', function () {
     return {
-        template: '<div style="width: 100%; height: 20px"><div class="progress" style="background: #BF1616; width: {{progress}}%; height: 20px"></div></div>',
+        template: '<div style="width: 100%; height: 20px"><div style="background: #BF1616; width: {{progress}}%; height: 20px"></div></div>',
         scope: { progress: '@progress' },
         replace: true,
         restrict: 'E'
