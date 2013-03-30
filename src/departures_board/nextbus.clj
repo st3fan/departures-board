@@ -8,7 +8,7 @@
    [departures-board.geodb :as geodb]))
 
 (def ^:dynamic NEXTBUS-API "http://webservices.nextbus.com/service/publicXMLFeed")
-(def ^:dynamic NEXTBUS-DATA-DIR "~/.nextbus")
+(def ^:dynamic NEXTBUS-DATA-DIR "~/.departures-board")
 (def GEODB-GRID-SIZE "0.1")
 
 ;; Indexing code
