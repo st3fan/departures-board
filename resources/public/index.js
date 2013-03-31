@@ -106,9 +106,9 @@ app.controller('PredictionsController', function ($scope, $http, $timeout) {
                             _.each(prediction.directions, function (direction) {
                                 var line = {route: prediction.route.tag,
                                             direction: direction.title[0],
-                                            stopName: simplifyDirectionName(direction.title),
+                                            name: simplifyDirectionName(direction.title),
                                             times: [],
-                                            name: getStopName(location.name, prediction.stop.tag) };
+                                            stopName: getStopName(location.name, prediction.stop.tag) };
                                 _.each(direction.predictions, function(prediction) {
                                     if (prediction.minutes > 1) {
                                         line.times.push(prediction.minutes);
@@ -126,9 +126,9 @@ app.controller('PredictionsController', function ($scope, $http, $timeout) {
                         _.each(prediction.directions, function (direction) {
                             var line = {route: prediction.route.tag,
                                         direction: direction.title[0],
-                                        stopName: simplifyDirectionName(direction.title),
+                                        name: simplifyDirectionName(direction.title),
                                         times: [],
-                                        name: prediction.stop.title };
+                                        stopName: prediction.stop.title };
                             _.each(direction.predictions, function(prediction) {
                                 if (prediction.minutes > 0) {
                                     line.times.push(prediction.minutes);
