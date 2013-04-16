@@ -1,4 +1,3 @@
-
 // Configuration: predefined locations. You can specify these in the
 // url like http://127.0.0.1:8080/#hacklabto If no location is
 // specified then the app defaults to your current geo location and
@@ -21,7 +20,9 @@ var locations = {
             {route: "501", stop: "1653", stopName: "Queen & Spadina"}, // 501 West: Queen & Spadina Ave
             {route: "504", stop: "436",  stopName: "King & Spadina"}, // 504 West: King St West & Spadina Ave
             {route: "508", stop: "436",  stopName: "King & Spadina"}, // 508 West: King St West & Spadina Ave
-            {route: "510", stop: "5275", stopName: "King & Spadina"}  // 510 North: Spadina Ave & King St West North Side
+            {route: "510", stop: "5275", stopName: "King & Spadina"},  // 510 North: Spadina Ave & King St West North Side
+            {route: "510", stop: "8346", stopName: "Richmond & Spadina"},  // 510 North: Spadina Ave At Richmond St West
+            {route: "141", stop: "1756", stopName: "Adelaide & Simcoe"}  // 141 North: Adelaide St West At Simcoe St
         ]
     }
 };
