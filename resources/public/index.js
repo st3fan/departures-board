@@ -33,8 +33,8 @@ var app = angular.module('predictions', []);
 
 app.directive('timer', function () {
     return {
-        template: '<div style="width: 100%; height: 20px"><div style="background: #BF1616; width: {{progress}}%; height: 20px"></div></div>',
-        scope: { progress: '@progress' },
+        template: '<div style="width: 100%; height: 20px"><div style="background: #BF1616; width: {{progress}}%; height: 20px; transition: width {{transition}} linear"></div></div>',
+        scope: { progress: '@progress', transition: '@transition' },
         replace: true,
         restrict: 'E'
     };
@@ -44,6 +44,7 @@ app.controller('PredictionsController', function ($scope, $http, $timeout) {
 
     $scope.seconds = 0;
     $scope.progress = 0;
+    $scope.transition = "1s";
     $scope.lines = [];
     $scope.focus = true;
     $scope.title = "";
@@ -157,10 +158,12 @@ app.controller('PredictionsController', function ($scope, $http, $timeout) {
         if ($scope.focus) {
             if ($scope.seconds == 0) {
                 $scope.loadPredictions(location);
+                $scope.transition = "0s";
             }
 
             $scope.seconds++;
             $scope.progress = ($scope.seconds / 30) * 100;
+            $scope.transition = "1s";
             
             if ($scope.seconds == 30) {
                 $scope.seconds = 0;
