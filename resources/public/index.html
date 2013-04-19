@@ -44,6 +44,14 @@
       margin-right: 20px;
     }
  
+    .timer > div {
+      transition: width 1s linear;
+    }
+
+    .timer[progress="0"] > div {
+      transition: width 0s linear;
+    }
+
     .prediction {
       height: 50px;
       width: 100%;
