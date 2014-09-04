@@ -17,7 +17,9 @@ var locations = {
         agency: "ttc",
         routes: [
             {route: "501", stop: "9255", stopName: "Dufferin St"},
-            {route: "501", stop: "14701", stopName: "Dufferin St West Side"}
+            {route: "501", stop: "14701", stopName: "Dufferin St West Side"},
+            {route: "29", stop: "4031", stopName: "Dufferin St At Queen St West"},
+            {route: "329", stop: "4031", stopName: "Dufferin St At Queen St West"}
         ]
     },
     "mozilla-toronto": {
