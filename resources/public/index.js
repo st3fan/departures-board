@@ -12,6 +12,14 @@ var locations = {
             {route: "510", stop: "6577", stopName: "Spadina & Nassau"}  // 510 North: Spadina Ave at Nassau St
         ]
     },
+    "newhacklabto": {
+        title: "Hacklab.TO Transit Board",
+        agency: "ttc",
+        routes: [
+            {route: "501", stop: "9255", stopName: "Dufferin St"},
+            {route: "501", stop: "14701", stopName: "Dufferin St West Side"}
+        ]
+    },
     "mozilla-toronto": {
         title: "Mozilla Toronto Transit Board",
         agency: "ttc",
@@ -136,7 +144,7 @@ app.controller('PredictionsController', function ($scope, $http, $timeout) {
                                 }
                             });
                             lines.push(line);
-                        });                        
+                        });
                     });
                 }
 
@@ -161,11 +169,11 @@ app.controller('PredictionsController', function ($scope, $http, $timeout) {
 
             $scope.seconds++;
             $scope.progress = ($scope.seconds / 30) * 100;
-            
+
             if ($scope.seconds == 30) {
                 $scope.seconds = 0;
             }
-        }        
+        }
         refreshTimeout = $timeout($scope.onTimeout, 1000);
     };
 
