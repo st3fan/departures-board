@@ -2,12 +2,12 @@
   (:use
    clojure.xml
    [clj-xpath.core :only [$x $x:tag $x:text $x:attrs $x:attrs* $x:node]])
-  (require
+  (:require
    [clj-http.client :as http]
    [me.raynes.fs :as fs]
    [departures-board.geodb :as geodb]))
 
-(def ^:dynamic NEXTBUS-API "http://webservices.nextbus.com/service/publicXMLFeed")
+(def ^:dynamic NEXTBUS-API "http://webservices.umoiq.com/service/publicXMLFeed")
 (def ^:dynamic NEXTBUS-DATA-DIR "~/.departures-board")
 (def GEODB-GRID-SIZE "0.1")
 
